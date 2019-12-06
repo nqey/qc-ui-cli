@@ -30,7 +30,6 @@ const mkdir = (dir) => {
   });
 }
 
-
 // 过滤执行参数
 const camelize = (str) => {
   return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')

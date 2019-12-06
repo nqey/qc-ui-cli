@@ -11,6 +11,7 @@ const fetchPackageJson = require('../lib/fetchPackageJson')
 const getTplAddress = require('../lib/initTplDir')
 const { cleanArgs } = require('../util/utils')
 
+// 监听进程结束 TODO
 process.on('exit', () => {
 })
 
@@ -33,13 +34,13 @@ program
     const options = cleanArgs(cmd)
 
     // 根据用户输入结果得到模版地址&工作目录
-    const dirOps = await getTplAddress(name)
+    const { tmpdir, tpldir } = await getTplAddress(name)
 
     // 获取模版
-    await fetchRemoteTpl(dirOps.tpldir, dirOps.tmpdir)
+    await fetchRemoteTpl(tpldir, tmpdir)
 
     // 获取模版配置项
-    const packageJson = await fetchPackageJson(dirOps.tmpdir)
+    const packageJson = await fetchPackageJson(tmpdir)
 
     // 用户与命令行交互初始化配置项
     const init = require('../lib/init')
@@ -48,7 +49,7 @@ program
     const customizePackageJson = await init(packageJson, name)
 
     // 写入自定义配置项
-    fs.writeFileSync(path.resolve(dirOps.tmpdir, 'package.json'), JSON.stringify(customizePackageJson, null, 2))
+    fs.writeFileSync(path.resolve(tmpdir, 'package.json'), JSON.stringify(customizePackageJson, null, 2))
   })
 
 // 帮助信息 TODO

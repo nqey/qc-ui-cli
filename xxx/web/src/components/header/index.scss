@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-width: 1200px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  background-color: #fff;
+  z-index: 999;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.15);
+}
+
+.header > .layout {
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.header > .layout > .logo {
+  vertical-align: middle;
+  width: 50px;
+}
+
+.header > .layout > .avatar__right {
+  position: absolute;
+  right: 30px;
+}
+
+.header > .layout > .avatar__right > .angle {
+  margin-left: 10px;
+}
+
+.profile {
+  width: 125px;
+  height: 0px;
+  position: absolute;
+  padding: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.15);
+  transition: all 0.3s;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.profile [class^="icon-"] {
+  width: 30px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+ul.profile > li {
+  cursor:default;
+  padding: 5px 20px;
+  line-height: 20px;
+}
+
+.open {
+  height: 80px;
+  padding: 10px 0;
+}
+
+ul.profile > li:hover {
+  background: #efefef;
+}

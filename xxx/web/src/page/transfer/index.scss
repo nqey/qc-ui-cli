@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+.btn-primary {
+  margin: 10px;
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+  padding: 7% 0;
+}
+
+.success-container {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: #01c853 1px solid;
+  .success {
+    line-height: 45px;
+    font-size: 20px;
+    color: #01c853;
+  }
+}
+
+.failed-container {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: red 1px solid;
+  .failed {
+    line-height: 45px;
+    font-size: 20px;
+    color: red;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.title {
+  font-size: 20px;
+  font-family: "黑体";
+}
+
+.subtitle {
+  font-size: 16px;
+  margin: 25px 0 50px 0;
+}

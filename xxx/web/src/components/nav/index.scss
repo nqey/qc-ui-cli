@@ -1,0 +1,57 @@
+@charset "utf-8";
+$bc: #435466;
+$fc: #00B4CF;
+
+.navbar-left {
+  width: 270px;
+  height: 100%;
+  min-height: 800px;
+  background: #2D4051;
+  color: #fff;
+  position: fixed;
+}
+.navbar-left > ul.navbar-left-menu > li {
+  cursor: default;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 40px;
+}
+.navbar-left > ul.navbar-left-menu {
+  margin-top: 20px;
+}
+.navbar-left > .navbar-left-log > ul > li {
+  height: 25px;
+  line-height: 25px;
+  padding-left: 14px;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #999;
+}
+
+.navbar-left > ul.navbar-left-menu > li:hover,
+.navbar-left > .navbar-left-log > ul > li:hover,
+.router-link-exact-active.router-link-active {
+  color: $fc;
+  background: $bc;
+}
+
+.h1 {
+  padding: 15px;
+  font-size: 24px;
+  color: #ccc;
+}
+
+.navbar-left > .navbar-left-log {
+  position: absolute;
+  bottom: 0;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.navbar-left-menu [class^="icon-"] {
+  position: relative;
+  margin-right: 10px; 
+  font-size: 20px;
+  top: 3px;
+}
