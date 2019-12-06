@@ -40,7 +40,7 @@ program
     await fetchRemoteTpl(tpldir, tmpdir)
 
     // 获取模版配置项
-    const packageJson = await fetchPackageJson(tmpdir)
+    const packageJson = fetchPackageJson(tmpdir)
 
     // 用户与命令行交互初始化配置项
     const init = require('../lib/init')
