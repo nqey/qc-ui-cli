@@ -1,0 +1,22 @@
+{
+  "name": "qc-ui-cli",
+  "version": "1.0.0",
+  "description": "用于快速开发的命令行界面",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^4.0.1",
+    "download-git-repo": "^3.0.2",
+    "execa": "^3.4.0",
+    "fs-extra": "^8.1.0",
+    "inquirer": "^7.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "qli": "bin/index.js"
+  },
+  "author": "QIN CHAO",
+  "license": "MIT"
+}
