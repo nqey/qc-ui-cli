@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 
+// 命令行界面解决方案包
 const program = require('commander')
-const fetchRemoteTpl = require('../lib/fetchRemoteTpl')
-const fetchPackageJson = require('../lib/fetchPackageJson')
-const init = require('../lib/init')
-const getTplAddress = require('../lib/initTplDir')
+
 const path = require('path')
 const fs = require('fs-extra')
+
+const fetchRemoteTpl = require('../lib/fetchRemoteTpl')
+const fetchPackageJson = require('../lib/fetchPackageJson')
+const getTplAddress = require('../lib/initTplDir')
+const { cleanArgs } = require('../util/utils')
 
 process.on('exit', () => {
 })
 
-
+// 创建脚手架指令
 program
-  .version(`@juma/cli ${require('../package').version}`)
+  .version(`@qc/cli ${require('../package').version}`)
   .usage('<command> [options]')
 
 
@@ -23,42 +26,35 @@ program
   // .option('-n, --name', '项目名称')
   // .option('-v, --version', '项目版本')
   // .option('-d, --description', '项目说明')
-  // .option('-g, --git <address>', '模版地址', (p1, p2) => {console.log(p1, p2)})
+  // .option('-g, --git <address>', '模版地址')
   .action(async (name, cmd) => {
+
+    // 获取执行参数
     const options = cleanArgs(cmd)
+
+    // 根据用户输入结果得到模版地址&工作目录
     const dirOps = await getTplAddress(name)
-    // console.log('-----------------地址----------------------', dirOps)
+
+    // 获取模版
     await fetchRemoteTpl(dirOps.tpldir, dirOps.tmpdir)
+
+    // 获取模版配置项
     const packageJson = await fetchPackageJson(dirOps.tmpdir)
+
+    // 用户与命令行交互初始化配置项
+    const init = require('../lib/init')
+
+    // 根据用户输入结果得到自定义配置项
     const customizePackageJson = await init(packageJson, name)
-    // console.log('-----------------自定义模----------------------', customizePackageJson)
+
+    // 写入自定义配置项
     fs.writeFileSync(path.resolve(dirOps.tmpdir, 'package.json'), JSON.stringify(customizePackageJson, null, 2))
   })
 
-// add some useful info on help
+// 帮助信息 TODO
 program.on('--help', () => {
   console.log()
   console.log()
 })
 
-
 program.parse(process.argv)
-
-function camelize (str) {
-  return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
-}
-// commander passes the Command object itself as options,
-// extract only actual options into a fresh object.
-function cleanArgs (cmd) {
-  const args = {}
-  cmd.options.forEach(o => {
-    // console.log('-----------------执行参数----------------------', o)
-    const key = camelize(o.long.replace(/^--/, ''))
-    // if an option is not present and Command has a method with the same name
-    // it should not be copied
-    if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
-      args[key] = cmd[key]
-    }
-  })
-  return args
-}

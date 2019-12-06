@@ -30,7 +30,27 @@ const mkdir = (dir) => {
   });
 }
 
+
+// 过滤执行参数
+const camelize = (str) => {
+  return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
+}
+
+// 提取执行参数
+const cleanArgs = (cmd) => {
+  const args = {}
+  cmd.options.forEach(o => {
+    const key = camelize(o.long.replace(/^--/, ''))
+    // 过滤不存在参数&Command重名
+    if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
+      args[key] = cmd[key]
+    }
+  })
+  return args
+}
+
 module.exports = {
 	mkdir,
-	stdin
+	stdin,
+  cleanArgs
 }
