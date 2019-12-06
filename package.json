@@ -1,6 +1,6 @@
 {
   "name": "qc-ui-cli",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "用于快速开发的命令行界面",
   "main": "index.js",
   "dependencies": {

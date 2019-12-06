@@ -17,7 +17,7 @@ process.on('exit', () => {
 
 // 创建脚手架指令
 program
-  .version(`@qc/cli ${require('../package').version}`)
+  .version(`@qc/cli ${require('../package').version}`, '-v, --version')
   .usage('<command> [options]')
 
 
